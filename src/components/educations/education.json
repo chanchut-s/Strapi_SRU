@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_educations_educations",
+  "info": {
+    "displayName": "education",
+    "icon": "book",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Education_Level": {
+      "type": "blocks"
+    },
+    "Aptitude": {
+      "type": "blocks"
+    }
+  }
+}

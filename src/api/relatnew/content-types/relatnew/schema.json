@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "relatnews",
+  "info": {
+    "singularName": "relatnew",
+    "pluralName": "relatnews",
+    "displayName": "PinNews",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "blog_news": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog.blog"
+    }
+  }
+}

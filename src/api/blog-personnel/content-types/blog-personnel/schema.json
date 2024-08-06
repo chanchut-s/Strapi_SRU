@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blog_personnels",
+  "info": {
+    "singularName": "blog-personnel",
+    "pluralName": "blog-personnels",
+    "displayName": "blogPersonnel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Image": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "NameTH": {
+      "type": "string"
+    },
+    "Email": {
+      "type": "email"
+    },
+    "workroom": {
+      "type": "string"
+    },
+    "NameEN": {
+      "type": "string"
+    },
+    "blogEducation": {
+      "displayName": "education",
+      "type": "component",
+      "repeatable": false,
+      "component": "educations.education"
+    },
+    "telephone": {
+      "type": "string"
+    }
+  }
+}
