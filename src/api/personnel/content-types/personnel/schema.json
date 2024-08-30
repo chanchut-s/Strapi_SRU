@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "personnels",
+  "info": {
+    "singularName": "personnel",
+    "pluralName": "personnels",
+    "displayName": "Personnel",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "professor": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-personnel.blog-personnel"
+    },
+    "staff": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-personnel.blog-personnel"
+    },
+    "janitor": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::blog-personnel.blog-personnel"
+    }
+  }
+}

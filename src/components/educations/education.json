@@ -12,6 +12,12 @@
     },
     "Aptitude": {
       "type": "blocks"
+    },
+    "Student": {
+      "type": "blocks"
+    },
+    "Graduate": {
+      "type": "blocks"
     }
   }
 }

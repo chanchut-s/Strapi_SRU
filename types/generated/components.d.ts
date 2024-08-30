@@ -10,6 +10,8 @@ export interface EducationsEducation extends Schema.Component {
   attributes: {
     Education_Level: Attribute.Blocks;
     Aptitude: Attribute.Blocks;
+    Student: Attribute.Blocks;
+    Graduate: Attribute.Blocks;
   };
 }
 

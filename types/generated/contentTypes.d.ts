@@ -811,13 +811,19 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    detail: Attribute.Text &
+    thumbnail: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    thumbnail: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+    content: Attribute.RichText &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    file: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -850,14 +856,54 @@ export interface ApiBlogPersonnelBlogPersonnel extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    NameTH: Attribute.String;
-    Email: Attribute.Email;
-    workroom: Attribute.String;
-    NameEN: Attribute.String;
-    blogEducation: Attribute.Component<'educations.education'>;
-    telephone: Attribute.String;
+    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    NameTH: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Email: Attribute.Email &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    workroom: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    NameEN: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    blogEducation: Attribute.Component<'educations.education'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    telephone: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -869,6 +915,89 @@ export interface ApiBlogPersonnelBlogPersonnel extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::blog-personnel.blog-personnel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::blog-personnel.blog-personnel',
+      'oneToMany',
+      'api::blog-personnel.blog-personnel'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiBlogRewardBlogReward extends Schema.CollectionType {
+  collectionName: 'blog_rewards';
+  info: {
+    singularName: 'blog-reward';
+    pluralName: 'blog-rewards';
+    displayName: 'blogReward';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    texturl: Attribute.String;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::blog-reward.blog-reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::blog-reward.blog-reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPersonnelPersonnel extends Schema.SingleType {
+  collectionName: 'personnels';
+  info: {
+    singularName: 'personnel';
+    pluralName: 'personnels';
+    displayName: 'Personnel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    professor: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToMany',
+      'api::blog-personnel.blog-personnel'
+    >;
+    staff: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToMany',
+      'api::blog-personnel.blog-personnel'
+    >;
+    janitor: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToMany',
+      'api::blog-personnel.blog-personnel'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::personnel.personnel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::personnel.personnel',
       'oneToOne',
       'admin::user'
     > &
@@ -911,6 +1040,41 @@ export interface ApiRelatnewRelatnew extends Schema.SingleType {
   };
 }
 
+export interface ApiRewardReward extends Schema.SingleType {
+  collectionName: 'rewards';
+  info: {
+    singularName: 'reward';
+    pluralName: 'rewards';
+    displayName: 'Reward';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    rewards: Attribute.Relation<
+      'api::reward.reward',
+      'oneToMany',
+      'api::blog-reward.blog-reward'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::reward.reward',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -931,7 +1095,10 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::blog.blog': ApiBlogBlog;
       'api::blog-personnel.blog-personnel': ApiBlogPersonnelBlogPersonnel;
+      'api::blog-reward.blog-reward': ApiBlogRewardBlogReward;
+      'api::personnel.personnel': ApiPersonnelPersonnel;
       'api::relatnew.relatnew': ApiRelatnewRelatnew;
+      'api::reward.reward': ApiRewardReward;
     }
   }
 }
